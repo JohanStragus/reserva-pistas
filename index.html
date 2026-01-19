@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reserva de Pistas</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>Reserva de Pistas</h1>
+            <p class="subtitle">Frontend estático + backend delegado (Firestore)</p>
+        </header>
+
+        <!-- Mensajes (éxito / error) -->
+        <section class="alerts" aria-live="polite">
+            <p id="alert-success" class="alert alert-success" hidden></p>
+            <p id="alert-error" class="alert alert-error" hidden></p>
+        </section>
+
+        <!-- Formulario de reserva -->
+        <section class="card">
+            <h2>Nueva reserva</h2>
+
+            <form id="form-reserva" autocomplete="off">
+                <div class="grid">
+                    <label class="field">
+                        <span>Pista</span>
+                        <select id="pista" required>
+                            <option value="" disabled selected>Selecciona una pista…</option>
+                            <option value="Pista 1">Pista 1</option>
+                            <option value="Pista 2">Pista 2</option>
+                            <option value="Pista 3">Pista 3</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        <span>Fecha</span>
+                        <input id="fecha" type="date" required />
+                    </label>
+
+                    <label class="field">
+                        <span>Hora inicio</span>
+                        <input id="horaInicio" type="time" required />
+                    </label>
+
+                    <label class="field">
+                        <span>Hora fin</span>
+                        <input id="horaFin" type="time" required />
+                    </label>
+
+                    <label class="field field-full">
+                        <span>Nombre / motivo</span>
+                        <input id="nombre" type="text" placeholder="Ej: Partido con Alex" maxlength="60" required />
+                    </label>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" id="btn-reservar">Reservar</button>
+                    <button type="button" id="btn-limpiar" class="btn-secondary">Limpiar</button>
+                </div>
+
+                <p class="hint">
+                    Consejo: intenta reservar la misma pista en la misma franja para probar el control de solapamientos.
+                </p>
+            </form>
+        </section>
+
+        <!-- Filtros + listado -->
+        <section class="card">
+            <div class="list-header">
+                <h2>Reservas</h2>
+
+                <div class="filters">
+                    <label class="field field-inline">
+                        <span>Filtrar por pista</span>
+                        <select id="filtroPista">
+                            <option value="ALL" selected>Todas</option>
+                            <option value="Pista 1">Pista 1</option>
+                            <option value="Pista 2">Pista 2</option>
+                            <option value="Pista 3">Pista 3</option>
+                        </select>
+                    </label>
+
+                    <label class="field field-inline">
+                        <span>Fecha</span>
+                        <input id="filtroFecha" type="date" />
+                    </label>
+
+                    <button type="button" id="btn-reset-filtros" class="btn-secondary">Reset</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table class="table" aria-describedby="tabla-reservas">
+                    <caption id="tabla-reservas" class="sr-only">
+                        Tabla con las reservas registradas.
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Pista</th>
+                            <th>Fecha</th>
+                            <th>Horario</th>
+                            <th>Nombre</th>
+                            <th class="th-actions">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-body">
+                        <!-- JS inyecta filas aquí -->
+                        <tr>
+                            <td colspan="5" class="empty">Aún no hay reservas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="footer-note">
+                Las reservas se guardarán en Firestore y se verán en tiempo real.
+            </p>
+        </section>
+    </main>
+
+    <script src="js/firebase.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

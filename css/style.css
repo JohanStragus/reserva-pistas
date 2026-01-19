@@ -1,0 +1,369 @@
+/* =========================
+   Reserva de Pistas - Style+
+   ========================= */
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg1: #0b1220;
+    --bg2: #111827;
+    --card: rgba(255, 255, 255, 0.08);
+    --card-strong: rgba(255, 255, 255, 0.10);
+    --stroke: rgba(255, 255, 255, 0.14);
+    --text: #e5e7eb;
+    --muted: rgba(229, 231, 235, 0.72);
+
+    --primary: #7c3aed;
+    /* violeta */
+    --primary2: #06b6d4;
+    /* cyan */
+    --primary-hover: #6d28d9;
+
+    --danger: #ef4444;
+    --success: #22c55e;
+
+    --radius: 1rem;
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+
+    /* Fondo con vida */
+    background:
+        radial-gradient(900px 500px at 10% 10%, rgba(124, 58, 237, 0.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(6, 182, 212, 0.28), transparent 60%),
+        radial-gradient(700px 500px at 50% 110%, rgba(34, 197, 94, 0.15), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+/* Layout */
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(1.9rem, 3vw, 2.4rem);
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+/* Cards (glassmorphism) */
+.card {
+    background: linear-gradient(180deg, var(--card), var(--card-strong));
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(10px);
+}
+
+.card h2 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card h2::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primary), var(--primary2));
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+}
+
+/* Alerts */
+.alerts {
+    margin-bottom: 0.75rem;
+}
+
+.alert {
+    padding: 0.85rem 1rem;
+    border-radius: 0.9rem;
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--stroke);
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.14);
+    color: #bbf7d0;
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.14);
+    color: #fecaca;
+}
+
+/* Form */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+}
+
+.field span {
+    color: var(--muted);
+}
+
+.field-full {
+    grid-column: 1 / -1;
+}
+
+.field-inline {
+    font-size: 0.8rem;
+}
+
+/* Inputs */
+input,
+select {
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(17, 24, 39, 0.35);
+    color: var(--text);
+    font-size: 0.92rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.08s ease;
+}
+
+select option {
+    color: #111827;
+    /* para que se vea bien el desplegable en algunos navegadores */
+}
+
+input::placeholder {
+    color: rgba(229, 231, 235, 0.55);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: rgba(6, 182, 212, 0.65);
+    box-shadow:
+        0 0 0 4px rgba(6, 182, 212, 0.18),
+        0 0 0 1px rgba(124, 58, 237, 0.18);
+}
+
+input:active,
+select:active {
+    transform: translateY(1px);
+}
+
+/* Buttons */
+.actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.88rem;
+    cursor: pointer;
+    color: white;
+
+    background: linear-gradient(135deg, var(--primary), var(--primary2));
+    box-shadow:
+        0 10px 22px rgba(124, 58, 237, 0.22),
+        0 10px 22px rgba(6, 182, 212, 0.12);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    opacity: 0.98;
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 6px 18px rgba(124, 58, 237, 0.18),
+        0 6px 18px rgba(6, 182, 212, 0.10);
+}
+
+.btn-secondary {
+    background: rgba(229, 231, 235, 0.14);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: rgba(229, 231, 235, 0.18);
+}
+
+/* Hint */
+.hint {
+    margin-top: 0.85rem;
+    font-size: 0.78rem;
+    color: rgba(229, 231, 235, 0.65);
+}
+
+/* List header */
+.list-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Table */
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--stroke);
+    border-radius: 1rem;
+    margin-top: 0.75rem;
+    background: rgba(17, 24, 39, 0.20);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.table th,
+.table td {
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    text-align: left;
+}
+
+.table th {
+    font-weight: 650;
+    color: rgba(229, 231, 235, 0.92);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.th-actions,
+.table td:last-child {
+    text-align: center;
+}
+
+.empty {
+    text-align: center;
+    color: rgba(229, 231, 235, 0.6);
+    font-style: italic;
+}
+
+/* Botón eliminar dentro tabla (lo usaremos luego en JS) */
+.btn-danger {
+    background: rgba(239, 68, 68, 0.14);
+    color: #fecaca;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: 999px;
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.btn-danger:hover {
+    background: rgba(239, 68, 68, 0.20);
+    transform: translateY(-1px);
+}
+
+.btn-danger:active {
+    transform: translateY(1px);
+}
+
+/* Footer note */
+.footer-note {
+    margin-top: 0.85rem;
+    font-size: 0.78rem;
+    color: rgba(229, 231, 235, 0.65);
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .list-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Logo */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.logo img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
